@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Demonstração — Kalon Beauté</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --lilac: #c9a8ce;
+      --lilac-deep: #a984b0;
+      --lilac-soft: #efe4f0;
+      --lilac-wash: #f7f0f6;
+      --ink: #1c1418;
+      --muted: #5c5158;
+      --paper: #fffcfd;
+      --line: rgba(28, 20, 24, 0.1);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: Outfit, system-ui, sans-serif;
+      color: var(--ink);
+      background: var(--lilac-wash);
+      line-height: 1.55;
+    }
+    .demo-banner {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: #2a1f2e;
+      color: #f6eef5;
+      text-align: center;
+      font-size: 0.78rem;
+      letter-spacing: 0.04em;
+      padding: 0.65rem 1rem;
+    }
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1.1rem 1.4rem;
+      background: rgba(255, 252, 253, 0.9);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--line);
+    }
+    .wordmark {
+      text-align: center;
+      text-decoration: none;
+      color: inherit;
+    }
+    .wordmark strong {
+      display: block;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-weight: 500;
+      font-size: 1.85rem;
+      line-height: 1;
+      letter-spacing: 0.02em;
+    }
+    .wordmark span {
+      display: block;
+      font-size: 0.62rem;
+      letter-spacing: 0.38em;
+      text-transform: uppercase;
+      margin-top: 0.2rem;
+      color: var(--muted);
+    }
+    nav {
+      display: flex;
+      gap: 1rem;
+      font-size: 0.88rem;
+    }
+    nav a { color: var(--ink); text-decoration: none; }
+    nav a:hover { color: var(--lilac-deep); }
+    .hero {
+      padding: 3rem 1.4rem 2.6rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      gap: 2rem;
+    }
+    @media (min-width: 800px) {
+      .hero { grid-template-columns: 1.1fr 0.9fr; align-items: center; padding: 4.5rem 2rem 3.5rem; }
+    }
+    .eyebrow {
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--lilac-deep);
+      margin-bottom: 0.85rem;
+    }
+    h1 {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-weight: 500;
+      font-size: clamp(2.2rem, 6vw, 3.6rem);
+      line-height: 1.12;
+      margin-bottom: 1rem;
+    }
+    .hero p { color: var(--muted); max-width: 34rem; margin-bottom: 1.6rem; }
+    .actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+    .btn {
+      border: 0;
+      border-radius: 999px;
+      padding: 0.9rem 1.3rem;
+      font: 500 0.95rem Outfit, sans-serif;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .btn-primary { background: var(--ink); color: #fff; }
+    .btn-primary:hover { background: #000; }
+    .btn-ghost { background: transparent; color: var(--ink); border: 1px solid var(--line); }
+    .mark {
+      min-height: 280px;
+      border-radius: 1.6rem;
+      background:
+        radial-gradient(circle at 30% 20%, #f8eef7, transparent 45%),
+        linear-gradient(180deg, #d8bcd9 0%, #c5a3c8 50%, #b892bc 100%);
+      display: grid;
+      place-items: center;
+      color: var(--ink);
+      box-shadow: 0 18px 40px rgba(80, 40, 70, 0.15);
+    }
+    .mark-inner {
+      width: min(220px, 70%);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: rgba(255, 252, 253, 0.55);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      display: grid;
+      place-items: center;
+      text-align: center;
+    }
+    .mark-inner strong {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-weight: 500;
+      font-size: 3rem;
+      line-height: 0.9;
+    }
+    .mark-inner span {
+      display: block;
+      margin-top: 0.35rem;
+      letter-spacing: 0.42em;
+      font-size: 0.68rem;
+      text-indent: 0.42em;
+    }
+    section { padding: 1rem 1.4rem 3rem; max-width: 1100px; margin: 0 auto; }
+    h2 {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-weight: 500;
+      font-size: 2rem;
+      margin-bottom: 1.2rem;
+    }
+    .services {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.85rem;
+    }
+    @media (min-width: 640px) { .services { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 960px) { .services { grid-template-columns: repeat(5, 1fr); } }
+    article {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 1.1rem;
+      padding: 1.15rem 1.1rem 1.25rem;
+    }
+    article h3 {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 1.35rem;
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+    }
+    article p { font-size: 0.92rem; color: var(--muted); }
+    .info {
+      display: grid;
+      gap: 1.2rem;
+    }
+    @media (min-width: 800px) { .info { grid-template-columns: 1fr 1fr; } }
+    .card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 1.2rem;
+      padding: 1.4rem;
+    }
+    .card p { color: var(--muted); margin-top: 0.5rem; }
+    .card a { color: var(--ink); }
+    footer {
+      padding: 2rem 1.4rem 3rem;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+    footer a { color: var(--ink); }
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(28, 20, 24, 0.45);
+      display: none;
+      place-items: center;
+      padding: 1.2rem;
+      z-index: 30;
+    }
+    .modal.open { display: grid; }
+    .modal-card {
+      background: var(--paper);
+      border-radius: 1.1rem;
+      padding: 1.4rem;
+      max-width: 26rem;
+    }
+    .modal-card h2 { font-size: 1.5rem; }
+    .modal-card p { margin: 0.7rem 0 1.1rem; color: var(--muted); }
+  </style>
+</head>
+<body>
+  <div class="demo-banner">Demonstração — proposta de página. Não é o site oficial da Kalon Beauté. Nenhum agendamento é enviado daqui.</div>
+  <header>
+    <a class="wordmark" href="#topo">
+      <strong>Kalon</strong>
+      <span>Beauté</span>
+    </a>
+    <nav>
+      <a href="#servicos">Serviços</a>
+      <a href="#local">Local</a>
+    </nav>
+  </header>
+  <main id="topo">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Salão de beleza · Centro de Colombo</p>
+        <h1>Mais de 11 anos elevando a autoestima.</h1>
+        <p>Uma página simples para conhecer os serviços, achar o salão e consultar a disponibilidade pelo WhatsApp — no celular, sem depender só do Instagram.</p>
+        <div class="actions">
+          <button class="btn btn-primary" type="button" id="whatsapp-demo">Consultar disponibilidade pelo WhatsApp</button>
+          <a class="btn btn-ghost" href="#servicos">Ver serviços</a>
+        </div>
+      </div>
+      <div class="mark" aria-hidden="true">
+        <div class="mark-inner">
+          <div>
+            <strong>Kalon</strong>
+            <span>Beauté</span>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="servicos">
+      <h2>Serviços</h2>
+      <div class="services">
+        <article>
+          <h3>Mechas</h3>
+          <p>Coloração e iluminação dos fios, conforme o que o salão oferece no atendimento.</p>
+        </article>
+        <article>
+          <h3>Maquiagem</h3>
+          <p>Make para o dia a dia ou para ocasiões em que a produção precisa durar na foto e na festa.</p>
+        </article>
+        <article>
+          <h3>Noivas</h3>
+          <p>Maquiagem e penteado para casamentos e eventos, com horário sob consulta.</p>
+        </article>
+        <article>
+          <h3>Cílios</h3>
+          <p>Serviço destacado no perfil do salão. Os detalhes são confirmados no agendamento.</p>
+        </article>
+        <article>
+          <h3>Unhas</h3>
+          <p>Cuidado com as unhas, também em destaque no Instagram da Kalon Beauté.</p>
+        </article>
+      </div>
+    </section>
+    <section id="local">
+      <h2>Onde estamos</h2>
+      <div class="info">
+        <div class="card">
+          <h3 style="font-family:'Cormorant Garamond',Georgia,serif;font-size:1.4rem;font-weight:600;">Endereço</h3>
+          <p>R. José Cavassin, 498<br>Centro — Colombo</p>
+          <p><a href="https://www.google.com/maps/search/?api=1&amp;query=Rua+Jos%C3%A9+Cavassin+498+Centro+Colombo+PR" target="_blank" rel="noopener noreferrer">Abrir no mapa</a></p>
+        </div>
+        <div class="card">
+          <h3 style="font-family:'Cormorant Garamond',Georgia,serif;font-size:1.4rem;font-weight:600;">Horários e contato</h3>
+          <p>Os horários não estavam publicados no perfil no momento desta demonstração, então aqui eles ficam sob consulta.</p>
+          <p>Instagram: <a href="https://www.instagram.com/kalonbeaute/" target="_blank" rel="noopener noreferrer">@kalonbeaute</a></p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <p>Página de demonstração preparada para apresentação. Não substitui o perfil oficial nem confirma preços.</p>
+  </footer>
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-card">
+      <h2 id="modal-title">Esta é só uma demonstração</h2>
+      <p>Na versão final, este botão abre o WhatsApp de agendamentos do salão. Aqui nenhuma mensagem é enviada.</p>
+      <button class="btn btn-primary" type="button" id="close-modal">Entendi</button>
+    </div>
+  </div>
+  <script>
+    const modal = document.getElementById("modal");
+    document.getElementById("whatsapp-demo").addEventListener("click", () => modal.classList.add("open"));
+    document.getElementById("close-modal").addEventListener("click", () => modal.classList.remove("open"));
+    modal.addEventListener("click", (event) => { if (event.target === modal) modal.classList.remove("open"); });
+  </script>
+</body>
+</html>
